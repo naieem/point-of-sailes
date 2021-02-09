@@ -1,17 +1,20 @@
 <?php session_start();
-include("lib/db.class.php");
+// include("lib/db.class.php");
+require_once('lib/MysqliDB.class.php');
 $host = $_SESSION['host'];
 $user = $_SESSION['user'];
 $pass = $_SESSION['pass'];
 $name = $_SESSION['db_name'];
 // Open the base (construct the object):
-echo $host;
-echo $user;
-$db = new DB($name, $host, $user, $pass);
+// echo $host;
+// echo $user;
+$db = new MysqliDb ($host, $user, $pass,$name);
 
 # Note that filters and validators are separate rule sets and method calls. There is a good reason for this.
 
 require "lib/gump.class.php";
+$db->withTotalCount()->get('store_details');
+echo $db->totalCount
 // $count = $db->countOfAll("store_details");
 // if ($count > 1) {
 //     header("location: index.php");
