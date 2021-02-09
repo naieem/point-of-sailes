@@ -100,111 +100,156 @@ include_once("init.php");
                     <div class="content-module-main cf">
 
                         <?php
-                            // if (isset($_POST['supplier']) and isset($_POST['stock_name'])) {
-                            //     //$billnumber = mysqli_real_escape_string($db->connection, $_POST['bill_no']);
-                            //     $autoid1 = mysqli_real_escape_string($db->connection, $_POST['id']);
+                            if (isset($_POST['supplier']) and isset($_POST['stock_name'])) {
+                                //$billnumber = mysqli_real_escape_string($db->connection, $_POST['bill_no']);
+                                $autoid1 = $db->escape($_POST['id']);
 
-                            //     $customer = mysqli_real_escape_string($db->connection, $_POST['supplier']);
-                            //     $address = mysqli_real_escape_string($db->connection, $_POST['address']);
-                            //     $contact = mysqli_real_escape_string($db->connection, $_POST['contact']);
-                            //     $count = $db->countOf("customer_details", "customer_name='$customer'");
-                            //     if ($count == 0) {
-                            //         $db->query("insert into customer_details(customer_name,customer_address,customer_contact1) values('$customer','$address','$contact')");
-                            //     }
-                            //     //$payment = mysqli_real_escape_string($db->connection, $_POST['payment']);
-                            //     //$balance = mysqli_real_escape_string($db->connection, $_POST['balance']);
-                            //     //$newvalue = $balance;
-                            //     $oldvalue = $db->queryUniqueValue("SELECT balance FROM customer_details WHERE customer_name='$customer'");
-                            //     //$diff = $newvalue - $oldvalue;
-                            //     //$temp_balance = isset($temp_balance) ? $temp_balance : 0;
-                            //     //$temp_balance = (int)$temp_balance + (int)$diff;
-                            //     //$db->execute("UPDATE customer_details SET balance='$temp_balance' WHERE customer_name='$customer'");
-                            //     // $selected_date = $_POST['due'];
-                            //     // $selected_date = strtotime($selected_date);
-                            //     // $mysqldate = date('Y-m-d H:i:s', $selected_date);
-                            //     //$due = $mysqldate;
-                            //     $mode = mysqli_real_escape_string($db->connection, $_POST['mode']);
+                                $customer = $db->escape($_POST['supplier']);
+                                $address = $db->escape($_POST['address']);
+                                $contact = $db->escape($_POST['contact']);
+                                // $db->countOf("customer_details", "customer_name='$customer'");
+
+                                $db->where('customer_name', $customer);
+                                $count = $db->getValue ("customer_details", "count(*)");
+                                if ($count == 0) {
+                                    $data = Array (
+                                        "customer_name" => $customer,
+                                        "customer_address" => $address,
+                                        "customer_contact1" => $contact
+                                    );
+                                    $id = $db->insert ('customer_details', $data);
+                                    // $db->query("insert into customer_details(customer_name,customer_address,customer_contact1) values('$customer','$address','$contact')");
+                                }
+                                //$payment = mysqli_real_escape_string($db->connection, $_POST['payment']);
+                                //$balance = mysqli_real_escape_string($db->connection, $_POST['balance']);
+                                //$newvalue = $balance;
+                                $oldvalue = $db->rawQueryValue("SELECT balance FROM customer_details WHERE customer_name='$customer' limit 1");
+                                //$diff = $newvalue - $oldvalue;
+                                //$temp_balance = isset($temp_balance) ? $temp_balance : 0;
+                                //$temp_balance = (int)$temp_balance + (int)$diff;
+                                //$db->execute("UPDATE customer_details SET balance='$temp_balance' WHERE customer_name='$customer'");
+                                // $selected_date = $_POST['due'];
+                                // $selected_date = strtotime($selected_date);
+                                // $mysqldate = date('Y-m-d H:i:s', $selected_date);
+                                //$due = $mysqldate;
+                                $mode = $db->escape($_POST['mode']);
 
 
-                            //     //$newvalue = $balance;
-                            //     $oldvalue = $db->queryUniqueValue("SELECT balance FROM customer_details WHERE customer_name='$customer'");
-                            //     // $diff = $newvalue - $oldvalue;
-                            //     //$temp_balance = (int)$temp_balance + (int)$diff;
-                            //     //$db->execute("UPDATE customer_details SET balance='$temp_balance' WHERE customer_name='$customer'");
-                            //     //$selected_date = $_POST['due'];
-                            //     // $selected_date = strtotime($selected_date);
-                            //     //$mysqldate = date('Y-m-d H:i:s', $selected_date);
-                            //     //$due = $mysqldate;
-                            //     $mode = mysqli_real_escape_string($db->connection, $_POST['mode']);
-                            //     $description = mysqli_real_escape_string($db->connection, $_POST['description']);
+                                //$newvalue = $balance;
+                                $oldvalue = $db->rawQueryValue("SELECT balance FROM customer_details WHERE customer_name='$customer' limit 1");
+                                // $diff = $newvalue - $oldvalue;
+                                //$temp_balance = (int)$temp_balance + (int)$diff;
+                                //$db->execute("UPDATE customer_details SET balance='$temp_balance' WHERE customer_name='$customer'");
+                                //$selected_date = $_POST['due'];
+                                // $selected_date = strtotime($selected_date);
+                                //$mysqldate = date('Y-m-d H:i:s', $selected_date);
+                                //$due = $mysqldate;
+                                // $mode = mysqli_real_escape_string($db->connection, $_POST['mode']);
+                                $description = $db->escape($_POST['description']);
+                                // mysqli_real_escape_string($db->connection, $_POST['description']);
 
-                            //     $namet = $_POST['stock_name'];
-                            //     $quantityt = isset($_POST['quanitity']) ? $_POST['quanitity'] : 0;
-                            //     $ratet = $_POST['sell'];
-                            //     $tax = $_POST['tax'];
-                            //     $tax_did = $_POST['tax_dis'];
-                            //     if ($_POST['tax'] == "") {
-                            //         $tax = 00;
-                            //     }
-                            //     if ($_POST['tax_dis'] == "") {
+                                $namet = $_POST['stock_name'];
+                                $quantityt = isset($_POST['quanitity']) ? $_POST['quanitity'] : 0;
+                                $ratet = $_POST['sell'];
+                                $tax = $_POST['tax'];
+                                $tax_did = $_POST['tax_dis'];
+                                if ($_POST['tax'] == "") {
+                                    $tax = 00;
+                                }
+                                if ($_POST['tax_dis'] == "") {
                                     
-                            //     }
+                                }
 
-                            //     $totalt = $_POST['total'];
-                            //     $payable = mysqli_real_escape_string($db->connection, $_POST['subtotal']);
-                            //     $discount = mysqli_real_escape_string($db->connection, $_POST['discount']);
-                            //     $dis_amount = mysqli_real_escape_string($db->connection, $_POST['dis_amount']);
-                            //     if ($_POST['dis_amount'] == "") {
-                            //         $dis_amount = 00;
-                            //     }
-                            //     if ($_POST['discount'] == "") {
-                            //         $discount = 00;
-                            //     }
-                            //     $subtotal = mysqli_real_escape_string($db->connection, $_POST['payable']);
+                                $totalt = $_POST['total'];
+                                $payable = $db->escape($_POST['subtotal']);
+                                // mysqli_real_escape_string($db->connection, $_POST['subtotal']);
+                                $discount = $db->escape($_POST['discount']);
+                                // mysqli_real_escape_string($db->connection, $_POST['discount']);
+                                $dis_amount = $db->escape($_POST['dis_amount']);
+                                // mysqli_real_escape_string($db->connection, $_POST['dis_amount']);
+                                if ($_POST['dis_amount'] == "") {
+                                    $dis_amount = 00;
+                                }
+                                if ($_POST['discount'] == "") {
+                                    $discount = 00;
+                                }
+                                $subtotal =  $db->escape($_POST['payable']);
 
-                            //     $username = $_SESSION['username'];
+                                $username = $_SESSION['username'];
 
-                            //     $i = 0;
-                            //     $j = 1;
+                                $i = 0;
+                                $j = 1;
 
-                            //     foreach ($namet as $name1) {
-                            //         $autoid = $_POST['s_id'][$i];
-                            //         $quantity = $_POST['quantity'][$i];
-                            //         $rate = $_POST['sell'][$i];
-                            //         $total = $_POST['total'][$i];
-                            //         $selected_date = $_POST['date'];
-                            //         $selected_date = strtotime($selected_date);
-                            //         $mysqldate = date('Y-m-d H:i:s', $selected_date);
-                            //         $username = $_SESSION['username'];
+                                foreach ($namet as $name1) {
+                                    $autoid = $_POST['s_id'][$i];
+                                    $quantity = $_POST['quantity'][$i];
+                                    $rate = $_POST['sell'][$i];
+                                    $total = $_POST['total'][$i];
+                                    $selected_date = $_POST['date'];
+                                    $selected_date = strtotime($selected_date);
+                                    $mysqldate = date('Y-m-d H:i:s', $selected_date);
+                                    $username = $_SESSION['username'];
+                                    $db->where('name',$name1);
+                                    $db->where('quantity',$quantity,'>=');
+                                    // getValue ("stock_avail", "count(*)"); 
+                                    $count = $db->getValue("stock_avail", "count(*)");
 
-                            //         $count = $db->queryUniqueValue("SELECT count(*) FROM stock_avail WHERE name='$name1' and quantity >='$quantity'");
+                                    if ($count == 1) {
+                                        $old_quantity = $db->rawQueryValue("SELECT quantity FROM stock_sales WHERE id='$autoid' and count1='$i' limit 1");
+                                        $db->where ('id', $autoid);
+                                        $data = Array (
+                                            'tax' => $tax,
+                                            'tax_dis' => $tax_did,
+                                            'grand_total' => $payable,
+                                            'discount' => $discount,
+                                            'dis_amount'=>$dis_amount,
+                                            'stock_name' => $name1,
+                                            'selling_price' => $rate,
+                                            'quantity' => $quantity,
+                                            'amount'=>$total,
+                                            'date' => $mysqldate,
+                                            'username' => $username,
+                                            'customer_id' => $customer,
+                                            'subtotal' => $subtotal,
+                                            'mode'=>$mode,
+                                            'description' => $description
+                                        );
+                                        $db->update ('stock_sales', $data);
+                                        $quantity_diff = $quantity - $old_quantity;
+                                        $quantity = $quantity + $quantity_diff;
+                                        $amount = $db->rawQueryValue("SELECT quantity FROM stock_avail WHERE name='$name1' limit 1");
+                                        $amount1 = $amount - $quantity;
 
-                            //         if ($count == 1) {
+                                        $db->where ('salesid', $autoid);
+                                        $db->where ('count1', $j);
+                                        $data = Array (
+                                            'stock_id' => $autoid,
+                                            'stock_name' => $name1,
+                                            'quantity' => $quantity,
+                                            'opening_stock'=>$amount,
+                                            'closing_stock' => $amount1,
+                                            'date' => $mysqldate,
+                                            'username' => $username,
+                                            'type'=>'sales',
+                                            'total' => $total,
+                                            'selling_price' => $rate
+                                        );
+                                        $db->update ('stock_entries', $data);
+                                        //echo "<br><font color=green size=+1 >New Sales Added ! Transaction ID [ $autoid ]</font>" ;
+                                        //echo "<br><font color=green size=+1> Current Stock Availability is  [ $amount1 ]</font>" ;
+                                        $j++;
+                                    } else {
+                                        echo "<br><font color=green size=+1 >There is no enough stock deliver for $name1! Please add stock !</font>";
+                                    }
 
-                            //             $old_quantity = $db->queryUniqueValue("SELECT quantity FROM stock_sales WHERE id='$autoid' and count1='$i'");
-                            //             $db->query("update stock_sales set tax=$tax,tax_dis='$tax_did', grand_total='$payable',discount='$discount',dis_amount='$dis_amount', stock_name='$name1',selling_price='$rate',quantity='$quantity',amount='$total',date='$mysqldate',username='$username',customer_id='$customer',subtotal='$subtotal',mode='$mode',description='$description' where id='$autoid'");
-                            //             $quantity_diff = $quantity - $old_quantity;
-                            //             $quantity = $quantity + $quantity_diff;
-                            //             $amount = $db->queryUniqueValue("SELECT quantity FROM stock_avail WHERE name='$name1'");
-                            //             $amount1 = $amount - $quantity;
-
-                            //             $db->query("update stock_entries set  stock_id='$autoid',stock_name='$name1',quantity='$quantity',opening_stock='$amount',closing_stock='$amount1',date='$mysqldate',username='$username',type='sales',total='$total',selling_price='$rate' where salesid='$autoid' and count1='$j'");
-                            //             //echo "<br><font color=green size=+1 >New Sales Added ! Transaction ID [ $autoid ]</font>" ;
-                            //             //echo "<br><font color=green size=+1> Current Stock Availability is  [ $amount1 ]</font>" ;
-                            //             $j++;
-                            //         } else {
-                            //             echo "<br><font color=green size=+1 >There is no enough stock deliver for $name1! Please add stock !</font>";
-                            //         }
-
-
-                            //         $i++;
-                            //     }
-                            //     $trans_id = trim($_POST['stockid']);
-                            //     echo "<div style='background-color:yellow;'><br><font color=green size=+1 >Sales Updated ! Transaction ID [" . $_POST['stockid'] . "] !</font></div> ";
-                            //     echo "<script>window.open('add_sales_print.php?sid=$trans_id','myNewWinsr','width=620,height=800,toolbar=0,menubar=no,status=no,resizable=yes,location=no,directories=no');</script>";
-                            // }
-                            //echo "<div style='background-color:yellow;'><br><font color=green size=+1 >Sales Updated ! Transaction ID [ $autoid ]</font></div> ";
-                            //echo "<script>window.open('add_sales_print.php?sid=$autoid','myNewWinsr','width=620,height=800,toolbar=0,menubar=no,status=no,resizable=yes,location=no,directories=no');</script>";
+                                    $i++;
+                                }
+                                $trans_id = trim($_POST['stockid']);
+                                echo "<div style='background-color:yellow;'><br><font color=green size=+1 >Sales Updated ! Transaction ID [" . $_POST['stockid'] . "] !</font></div> ";
+                                echo "<script>window.open('add_sales_print.php?sid=$trans_id','myNewWinsr','width=620,height=800,toolbar=0,menubar=no,status=no,resizable=yes,location=no,directories=no');</script>";
+                            }
+                            // echo "<div style='background-color:yellow;'><br><font color=green size=+1 >Sales Updated ! Transaction ID [ $autoid ]</font></div> ";
+                            // echo "<script>window.open('add_sales_print.php?sid=$autoid','myNewWinsr','width=620,height=800,toolbar=0,menubar=no,status=no,resizable=yes,location=no,directories=no');</script>";
                             ?>
                         <?php
                             if (isset($_GET['sid']))
@@ -463,11 +508,11 @@ include_once("init.php");
                             <table class="form">
                                 <tr>
                                     <td>
-                                        <input class="button round blue image-right ic-add text-upper" type="submit"
-                                            name="Submit" value="Add">
+                                        <input class="button round blue text-upper" type="submit"
+                                            name="Submit" value="Update">
                                     </td>
                                     <td> (Control + S)
-                                        <input class="button round red   text-upper" type="reset" name="Reset"
+                                        <input class="button round red text-upper" type="reset" name="Reset"
                                             value="Reset">
                                     </td>
                                     <td> &nbsp;</td>
