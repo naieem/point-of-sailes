@@ -51,7 +51,7 @@
       $this->lastResult = mysqli_query($this->connection,$query) or $this->debugAndDie($query);
 
       $this->debug($debug, $query, $this->lastResult);
-      var_dump($this->lastResult;)
+      // var_dump($this->lastResult;)
       return $this->lastResult;
     }
     /** Do the same as query() but do not return nor store result.\n

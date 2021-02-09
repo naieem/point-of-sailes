@@ -83,7 +83,7 @@ if (isset($_POST['submit']) and isset($_POST['uname']) and isset($_POST['passwor
     $uname = $_POST['uname'];
     $password = $_POST['password'];
     $answer = $_POST['answer'];
-    $sql = "INSERT INTO stock_user (username, password, answer) VALUES ('" . $uname . "', '" . $password . "', '" . $answer . "')";
+    $sql = "INSERT INTO `stock_user` (`id`, `username`, `password`, `user_type`) VALUES (NULL,$uname, $password, $answer);";
     $db->query($sql);
     // echo$db->query($sql);
     echo "mal updated";
