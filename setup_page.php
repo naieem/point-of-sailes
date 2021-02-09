@@ -44,29 +44,29 @@ if (isset($_POST['host']) and isset($_POST['username']) and $_POST['host'] != ""
     }
 
     // /* execute multi query */
-    if (mysqli_multi_query($con, $sql)) {
-        do {
-            try {
-                if ($result = mysqli_store_result($con)) {
-                    while ($row = mysqli_fetch_row($result)) {
-                        printf("%s\n", $row[0]);
-                    }
-                    mysqli_free_result($result);
-                } else {
-                    die("issue with query")
-                //    echo "issue with query";
-                }
-                /* print divider */
-                if (mysqli_more_results($con)) {
-                    printf("-----------------\n");
-                }
-            } catch (Exception $e) {
-                echo 'Caught exception: ', $e->getMessage(), "\n";
-            }
-        } while (mysqli_next_result($con));
-    } else {
-        die('Problem in query execution.');
-    }
+    // if (mysqli_multi_query($con, $sql)) {
+    //     do {
+    //         try {
+    //             if ($result = mysqli_store_result($con)) {
+    //                 while ($row = mysqli_fetch_row($result)) {
+    //                     printf("%s\n", $row[0]);
+    //                 }
+    //                 mysqli_free_result($result);
+    //             } else {
+    //                 die("issue with query")
+    //             //    echo "issue with query";
+    //             }
+    //             /* print divider */
+    //             if (mysqli_more_results($con)) {
+    //                 printf("-----------------\n");
+    //             }
+    //         } catch (Exception $e) {
+    //             echo 'Caught exception: ', $e->getMessage(), "\n";
+    //         }
+    //     } while (mysqli_next_result($con));
+    // } else {
+    //     die('Problem in query execution.');
+    // }
 
 
     // $ourFileName = "config.php";
