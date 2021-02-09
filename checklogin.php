@@ -20,10 +20,10 @@ $mypassword = $db->escape ($mypassword);
 // $sql = "SELECT * FROM $tbl_name WHERE username='$myusername' and password='$mypassword'";
 $db->where ('username', $myusername);
 $db->where ('password', $mypassword);
-$results = $db->JsonBuilder()->get($tbl_name);
+$results = $db->ObjectBuilder()->get($tbl_name);
 var_dump($results);
 if ($db->count > 0){
-    echo $results[0]['email'];
+    echo $results[0]->username;
 }
 // $result = mysqli_query($db->connection, $sql);
 // // mysqli_num_row is counting table row
