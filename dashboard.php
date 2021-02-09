@@ -46,8 +46,9 @@ include_once("init.php");
 
         <!-- Change this image to your own company's logo -->
         <!-- The logo will automatically be resized to 30px height. -->
-        <?php $line = $db->queryUniqueObject("SELECT * FROM store_details ");
-        $_SESSION['logo'] = $line->log;
+        <?php 
+        // $line = $db->queryUniqueObject("SELECT * FROM store_details ");
+        // $_SESSION['logo'] = $line->log;
         ?>
         <a href="#" id="company-branding-small" class="fr"><img src="<?php if (isset($_SESSION['logo'])) {
                 echo "upload/" . $_SESSION['logo'];
@@ -104,7 +105,7 @@ include_once("init.php");
                         </tr>
                         <tr>
                             <td align="left">Total Number of Products</td>
-                            <td align="left"><?php echo $count = $db->countOfAll("stock_avail"); ?>&nbsp;</td>
+                            <td align="left"><?php echo $count = $db->getValue ("stock_avail", "count(*)");?>&nbsp;</td>
                         </tr>
                         <tr>
                             <td align="left">&nbsp;</td>
@@ -112,7 +113,7 @@ include_once("init.php");
                         </tr>
                         <tr>
                             <td align="left">Total Sales Transactions</td>
-                            <td align="left"><?php echo $count = $db->countOfAll("stock_sales"); ?></td>
+                            <td align="left"><?php echo $count = $db->getValue ("stock_sales", "count(*)");?></td>
                         </tr>
                         <tr>
                             <td align="left">&nbsp;</td>
@@ -120,7 +121,7 @@ include_once("init.php");
                         </tr>
                         <tr>
                             <td align="left">Total number of Suppliers</td>
-                            <td align="left"><?php echo $count = $db->countOfAll("supplier_details"); ?></td>
+                            <td align="left"><?php echo $count = $db->getValue ("stock_supplier_detailsavail", "count(*)");?></td>
                         </tr>
                         <tr>
                             <td align="left">&nbsp;</td>
@@ -128,7 +129,7 @@ include_once("init.php");
                         </tr>
                         <tr>
                             <td align="left">Total Number of Customers</td>
-                            <td align="left"><?php echo $count = $db->countOfAll("customer_details"); ?></td>
+                            <td align="left"><?php echo $count = $db->getValue ("customer_details", "count(*)"); ?></td>
                         </tr>
                         <tr>
                             <td align="left">&nbsp;</td>
