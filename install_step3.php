@@ -123,6 +123,7 @@ if (isset($_POST['submit']) and isset($_POST['uname']) and isset($_POST['passwor
 
                 <!--<a href="dashboard.php" class="button round blue image-right ic-right-arrow">LOG IN</a>-->
                 <input type="submit" class="button round blue image-right ic-right-arrow" name="submit" value="Next" />
+                <a href="index.php" class="button round blue image-right ic-right-arrow">Skip</a>
                 &nbsp;
             </fieldset>
         </form>
