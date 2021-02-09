@@ -6,7 +6,7 @@ if (isset($_POST['host']) and isset($_POST['username']) and $_POST['host'] != ""
     $user = trim($_POST['username']);
     $pass = trim($_POST['password']);
     $name = '';
-    echo "hsjfhdj";
+    echo "sdf";
     // if (isset($_POST['name'])) {
     //     $name = $_POST['name'];
     // }
@@ -71,10 +71,10 @@ if (isset($_POST['host']) and isset($_POST['username']) and $_POST['host'] != ""
 
     // $ourFileName = "config.php";
     // $ourFileHandle = fopen($ourFileName, 'w') or die("Not able to write config file (check directory permissions). You can directly Create config.php file as like config.php.sample file. ");
-    // $data = '<?php $config["database"] = "' . $name . '"; $config["host"]= "' . $host . '";$config["username"]= "' . $user . '"; $config["password"]= "' . $pass . '";?>';
-    // fwrite($ourFileHandle, $data);
-    // fclose($ourFileHandle);
-    // header("location: install_step3.php");
+     /*$data = '<?php $config["database"] = "' . $name . '"; $config["host"]= "' . $host . '";$config["username"]= "' . $user . '"; $config["password"]= "' . $pass . '";?>';
+     fwrite($ourFileHandle, $data);
+    fclose($ourFileHandle);
+    header("location: install_step3.php");*/
 
 } else {
     header("location: install_step1.php");
