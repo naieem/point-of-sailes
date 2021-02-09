@@ -69,7 +69,10 @@ $pass = $_SESSION['pass'];
 $name = $_SESSION['db_name'];
 // Open the base (construct the object):
 $db = new DB($name, $host, $user, $pass);
-
+echo $name;
+echo $host;
+echo $user;
+echo $pass;
 # Note that filters and validators are separate rule sets and method calls. There is a good reason for this.
 
 require "lib/gump.class.php";
