@@ -16,14 +16,14 @@ if (isset($_POST['host']) and isset($_POST['username']) and $_POST['host'] != ""
     $_SESSION['user'] = $user;
     $_SESSION['pass'] = $pass;
     $_SESSION['db_name'] = $name;
-    $link = mysqli_connect("$host", "$user", "$pass");
-    if (!$link) {
+    
+
+    $con = mysqli_connect("$host", "$user", "$pass");
+    if (!$con) {
         $data = "Database Configration is Not vaild";
         header("location: install_step1.php?msg=$data");
         exit;
     }
-
-    $con = mysqli_connect("$host", "$user", "$pass");
 // Check connection
     if (isset($_POST['name'])) {
         $sql = "CREATE DATABASE $name";
@@ -33,8 +33,6 @@ if (isset($_POST['host']) and isset($_POST['username']) and $_POST['host'] != ""
             exit;
         }
     }
-
-    $con = mysqli_connect("$host", "$user", "$pass", "$name");
     if (mysqli_connect_errno()) {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
     }

@@ -12,9 +12,9 @@ $db = new MysqliDb ($host, $user, $pass,$name);
 
 # Note that filters and validators are separate rule sets and method calls. There is a good reason for this.
 
-require "lib/gump.class.php";
+// require "lib/gump.class.php";
 $db->withTotalCount()->get('store_details');
-echo $db->totalCount
+// echo $db->totalCount
 // $count = $db->countOfAll("store_details");
 // if ($count > 1) {
 //     header("location: index.php");
@@ -51,16 +51,15 @@ if (isset($_POST['submit']) and $_POST['submit'] === 'Upload') {
             # Note that filters and validators are separate rule sets and method calls. There is a good reason for this.
 
             $upload = $_FILES["file"]["name"];
-            $type;
-            $db->query("UPDATE store_details  SET log='" . $upload . "',type='" . $type . "'");
+            // $db->query("UPDATE store_details  SET log='" . $upload . "',type='" . $type . "'");
             header("location: install_step4.php");
 
         }
         // header("location: install_step4.php");
         ?>
-        <script type="text/javascript">
+        <!-- <script type="text/javascript">
             setTimeout("window.location.reload();", 4000);
-        </script>
+        </script> -->
         <?php
     } else {
         echo "<p  style=color:red;margin-left:550px;font-size:20px >Invalid file</p>";
@@ -140,7 +139,7 @@ if (isset($_POST['submit']) and isset($_POST['sname']) and isset($_POST['address
     $user = $_SESSION['user'];
     $pass = $_SESSION['pass'];
     $name = $_SESSION['db_name'];
-    $con = mysqli_connect("$host", "$user", "$pass", "$name");
+    // $con = mysqli_connect("$host", "$user", "$pass", "$name");
     $name = $_POST['sname'];
     $address = $_POST['address'];
     $place = $_POST['place'];
@@ -151,7 +150,7 @@ if (isset($_POST['submit']) and isset($_POST['sname']) and isset($_POST['address
     $pin = $_POST['pin'];
 
 
-    $db->query("UPDATE store_details  SET pin='" . $pin . "',city='" . $city . "',name='" . $name . "',email='" . $email . "',web='" . $web . "',address='" . $address . "',place='" . $place . "',phone='" . $phone . "' ");
+    // $db->query("UPDATE store_details  SET pin='" . $pin . "',city='" . $city . "',name='" . $name . "',email='" . $email . "',web='" . $web . "',address='" . $address . "',place='" . $place . "',phone='" . $phone . "' ");
 
     // $sql="INSERT INTO `store_details` (`name`, `address`, `place`, `city`, `phone`, `email`, `web`, `pin`) VALUES
 //('".$_POST['sname']."', '".$_POST['address']."', '".$_POST['place']."', '".$_POST['city']."', '".$_POST['phone']."', '".$_POST['email']."', '".$_POST['website']."', '".$_POST['pin']."')";
