@@ -24,7 +24,6 @@ if (isset($_POST['host']) and isset($_POST['username']) and $_POST['host'] != ""
         header("location: install_step1.php?msg=$data");
         exit;
     }
-// Check connection
     if (isset($_POST['name'])) {
         $sql = "CREATE DATABASE $name";
         if (!mysqli_query($con, $sql)) {
@@ -45,19 +44,16 @@ if (isset($_POST['host']) and isset($_POST['username']) and $_POST['host'] != ""
 
     /* execute multi query */
     if (mysqli_multi_query($con, $sql)) {
-//        var_dump($sql);
         do {
             try {
-//                var_dump($host,$user,$pass);
-                /* store first result set */
                 if ($result = mysqli_store_result($con)) {
-
                     while ($row = mysqli_fetch_row($result)) {
                         printf("%s\n", $row[0]);
                     }
                     mysqli_free_result($result);
                 } else {
-//                    echo "issue with query";
+                    die("issue with query")
+                //    echo "issue with query";
                 }
                 /* print divider */
                 if (mysqli_more_results($con)) {
@@ -77,7 +73,7 @@ if (isset($_POST['host']) and isset($_POST['username']) and $_POST['host'] != ""
     $data = '<?php $config["database"] = "' . $name . '"; $config["host"]= "' . $host . '";$config["username"]= "' . $user . '"; $config["password"]= "' . $pass . '";?>';
     fwrite($ourFileHandle, $data);
     fclose($ourFileHandle);
-    header("location: install_step3.php");
+    // header("location: install_step3.php");
 
 } else {
     header("location: install_step1.php");
