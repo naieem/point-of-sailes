@@ -79,11 +79,11 @@ if (isset($_POST['submit']) and isset($_POST['uname']) and isset($_POST['passwor
     $user = $_SESSION['user'];
     $pass = $_SESSION['pass'];
     $name = $_SESSION['db_name'];
-    $con = mysqli_connect("$host", "$user", "$pass", "$name");
-    $uname = $_POST['uname'];
-    $password = $_POST['password'];
-    $answer = $_POST['answer'];
-    $db->query("UPDATE stock_user  SET username ='" . $uname . "',password='" . $password . "',answer='" . $answer . "'");
+    // $con = mysqli_connect("$host", "$user", "$pass", "$name");
+    // $uname = $_POST['uname'];
+    // $password = $_POST['password'];
+    // $answer = $_POST['answer'];
+    // $db->query("UPDATE stock_user  SET username ='" . $uname . "',password='" . $password . "',answer='" . $answer . "'");
     echo "mal updated";
     // echo "<script>window.location = 'install_step4.php';</script>";
     // exit;
