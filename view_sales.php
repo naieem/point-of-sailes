@@ -172,11 +172,10 @@ include_once("init.php");
 
 
                                 }
-
-
-                                $total_pages = mysqli_fetch_array(mysqli_query($db->connection, $query));
-                                $total_pages = $total_pages['num'];
-
+                                $total_pages =$db->ObjectBuilder()->rawQueryOne($query);
+                                // $total_pages = mysqli_fetch_array(mysqli_query($db->connection, $query));
+                                $total_pages = $total_pages->num;
+                                // echo $total_pages;
 
                                 /* Setup vars for query. */
 
@@ -204,11 +203,15 @@ include_once("init.php");
 								//Count number of records
 								$co=0;
 								$co1=0;
-								$s=mysqli_query($db->connection, "select * from stock_sales");
-								while($r= mysqli_fetch_array($s))
-								{
-									$co++;
-								}
+								// $s=mysqli_query($db->connection, "select * from stock_sales");
+                                $results = $db->ObjectBuilder()->rawQuery('select * from stock_sales');
+                                // var_dump($r);
+                                if ($db->count > 0){
+                                    foreach ($results as $line) { 
+                                        $co++;
+                                        // echo $line->transactionid.'/n';
+                                    }
+                                }
 								
 
                                 $sql = "SELECT * FROM stock_sales ORDER BY id desc LIMIT $start, $limit  ";
@@ -220,9 +223,7 @@ include_once("init.php");
                                 }
 
 
-                                $result = mysqli_query($db->connection, $sql);
-
-
+                                $result = $db->rawQuery($sql);
                                 /* Setup page vars for display. */
 
                                 if ($page == 0) $page = 1;                    //if no page var is given, default to 1.
@@ -389,12 +390,18 @@ include_once("init.php");
                                 </tr>
 
                                 <?php
-$count=0;
+                                $count=0;
 
 								$i = 1;
                                 $no = $page - 1;
                                 $no = $no * $limit;
-                                while ($row = mysqli_fetch_array($result)) {
+                                if ($db->count > 0){
+                                    foreach ($result as $row) { 
+                                        $co++;
+                                        // echo $line->transactionid.'/n';
+                                    }
+                                }
+                                foreach ($result as $row) {
 									$count++;
 									$co1++;
                                     ?>
