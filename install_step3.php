@@ -63,7 +63,7 @@
     <!-- end header -->
 
     <?php
-include("lib/db.class.php");
+// include("lib/db.class.php");
 
 $host = $_SESSION['host'];
 $user = $_SESSION['user'];
