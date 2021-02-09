@@ -5,15 +5,17 @@ $user = $_SESSION['user'];
 $pass = $_SESSION['pass'];
 $name = $_SESSION['db_name'];
 // Open the base (construct the object):
+echo $host;
+echo $user;
 $db = new DB($name, $host, $user, $pass);
 
 # Note that filters and validators are separate rule sets and method calls. There is a good reason for this.
 
 require "lib/gump.class.php";
-$count = $db->countOfAll("store_details");
-if ($count > 1) {
-    header("location: index.php");
-}
+// $count = $db->countOfAll("store_details");
+// if ($count > 1) {
+//     header("location: index.php");
+// }
 if (isset($_POST['submit']) and $_POST['submit'] === 'Upload') {
 
     $allowedExts = array("gif", "jpeg", "jpg", "png");
