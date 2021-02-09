@@ -3,7 +3,7 @@ session_start();
 require_once('lib/MysqliDB.class.php');
 include_once "config.php";
 $db = new MysqliDb ( $config['host'], $config['username'], $config['password'],$config['database']);
-// $db = new DB(,);
+
 $tbl_name = "stock_user"; // Table name
 
 // username and password sent from form 
@@ -14,10 +14,10 @@ $mypassword = $_REQUEST['password'];
 $myusername = stripslashes($myusername);
 $mypassword = stripslashes($mypassword);
 
-$myusername = mysqli_real_escape_string($db->connection, $myusername);
-$mypassword = mysqli_real_escape_string($db->connection, $mypassword);
+// $myusername = mysqli_real_escape_string($db->connection, $myusername);
+// $mypassword = mysqli_real_escape_string($db->connection, $mypassword);
 
-$sql = "SELECT * FROM $tbl_name WHERE username='$myusername' and password='$mypassword'";
+// $sql = "SELECT * FROM $tbl_name WHERE username='$myusername' and password='$mypassword'";
 $db->where ('username', $myusername);
 $db->where ('password', $mypassword);
 $results = $db->get($tbl_name);
