@@ -14,7 +14,7 @@ $db = new MysqliDb ($host, $user, $pass,$name);
 
 // require "lib/gump.class.php";
 $db->withTotalCount()->get('store_details');
-// echo $db->totalCount
+echo $db->totalCount;
 // $count = $db->countOfAll("store_details");
 // if ($count > 1) {
 //     header("location: index.php");
