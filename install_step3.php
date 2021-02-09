@@ -77,7 +77,7 @@ if ($conn->connect_error) {
 }
 # Note that filters and validators are separate rule sets and method calls. There is a good reason for this.
 
-require "lib/gump.class.php";
+// require "lib/gump.class.php";
 
 if (isset($_POST['submit']) and isset($_POST['uname']) and isset($_POST['password']) and isset($_POST['answer'])) {
     $uname = $_POST['uname'];
