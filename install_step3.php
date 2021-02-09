@@ -96,7 +96,7 @@ if (isset($_POST['submit']) and isset($_POST['uname']) and isset($_POST['passwor
     $answer = $_POST['answer'];
     // $sql = "INSERT INTO `stock_user` (`id`, `username`, `password`, `user_type`) VALUES (NULL,$uname, $password, $answer);";
     // $db->query($sql);
-    $sql = "INSERT INTO `stock_user` (`id`, `username`, `password`, `user_type`) VALUES (NULL,'{$uname}', '{$password}', '{$answer}')";
+    $sql = "INSERT INTO `stock_user` (`id`, `username`, `password`, `user_type`,`answer`) VALUES (NULL,'{$uname}', '{$password}', 'admin','{$answer}')";
     if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
     $conn->close();
