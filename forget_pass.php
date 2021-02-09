@@ -17,7 +17,7 @@ $gump = new GUMP();
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>POSNIC - Store Logo</title>
+    <title>Point of sale - Store Logo</title>
 
     <!-- Stylesheets -->
 

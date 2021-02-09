@@ -7,7 +7,7 @@ include_once("init.php");
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>POSNIC - Dashboard</title>
+    <title>Point of sale - Dashboard</title>
 
     <!-- Stylesheets -->
 

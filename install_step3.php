@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>POSNIC - User</title>
+    <title>Point of sale - User</title>
 
     <!-- Stylesheets -->
 
@@ -75,15 +75,17 @@ $db = new DB($name, $host, $user, $pass);
 require "lib/gump.class.php";
 
 if (isset($_POST['submit']) and isset($_POST['uname']) and isset($_POST['password']) and isset($_POST['answer'])) {
-    $host = $_SESSION['host'];
-    $user = $_SESSION['user'];
-    $pass = $_SESSION['pass'];
-    $name = $_SESSION['db_name'];
-    $con = mysqli_connect("$host", "$user", "$pass", "$name");
+    // $host = $_SESSION['host'];
+    // $user = $_SESSION['user'];
+    // $pass = $_SESSION['pass'];
+    // $name = $_SESSION['db_name'];
+    // $con = mysqli_connect("$host", "$user", "$pass", "$name");
     $uname = $_POST['uname'];
     $password = $_POST['password'];
     $answer = $_POST['answer'];
-    $db->query("UPDATE stock_user  SET username ='" . $uname . "',password='" . $password . "',answer='" . $answer . "'");
+    $sql = "INSERT INTO stock_user (username, password, answer) VALUES ('" . $uname . "', '" . $password . "', '" . $answer . "')";
+    // $db->query($sql);
+    echo $db->query($sql);
     echo "mal updated";
     // echo "<script>window.location = 'install_step4.php';</script>";
     // exit;

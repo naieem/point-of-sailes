@@ -3,9 +3,6 @@ session_start();
 if (!file_exists("config.php") || !include_once "config.php") {
     header("location: install_step1.php");
 }
-if (!defined('posnicEntry')) {
-    define('posnicEntry', true);
-}
 if (isset($_SESSION['username'])) {
     if ($_SESSION['usertype'] == 'admin') // if session variable "username" does not exist.
         header("location: dashboard.php"); // Re-direct to index.php
@@ -17,7 +14,7 @@ if (isset($_SESSION['username'])) {
 <head>
     <meta charset="utf-8">
 
-    <title>POSNIC - Login to Control Panel</title>
+    <title>Point of sale - Login to Control Panel</title>
 
     <!-- Stylesheets -->
 

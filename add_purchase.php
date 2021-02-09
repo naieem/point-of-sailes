@@ -6,7 +6,7 @@ include_once("init.php");
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>POSNIC - Add Purchase</title>
+        <title>Point of sale - Add Purchase</title>
 
         <!-- Stylesheets -->
 

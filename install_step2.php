@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>POSNIC - Login to Control Panel</title>
+    <title>Point of sale - Login to Control Panel</title>
 
     <!-- Stylesheets -->
 

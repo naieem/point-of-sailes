@@ -67,7 +67,7 @@ if (isset($_POST['submit']) and $_POST['submit'] === 'Upload') {
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>POSNIC - Login to Control Panel</title>
+    <title>Point of sale - Login to Control Panel</title>
 
     <!-- Stylesheets -->
 

@@ -7,7 +7,7 @@ include_once("init.php");
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>POSNIC - Update Category</title>
+    <title>Point of sale - Update Category</title>
 
     <!-- Stylesheets -->
 
