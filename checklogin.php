@@ -26,8 +26,8 @@ if ($db->count > 0 && $db->count < 2){
     echo $results[0]->username;
     $_SESSION['id'] = $results[0]->id;
     $_SESSION['username'] =$results[0]->username;
-    $_SESSION['usertype'] = $results[0]->usertype;
-    if ($results[0]->usertype == "admin")
+    $_SESSION['usertype'] = $results[0]->user_type;
+    if ($results[0]->user_type == "admin")
         header("location: dashboard.php");
     else
         die("Not Valid User Type. Check with your application administartor");
