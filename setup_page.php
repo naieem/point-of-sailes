@@ -6,7 +6,7 @@ if (isset($_POST['host']) and isset($_POST['username']) and $_POST['host'] != ""
     $user = trim($_POST['username']);
     $pass = trim($_POST['password']);
     $name = '';
-    echo "sdf";
+    echo $host .' '.$user.' '. $pass;
     // if (isset($_POST['name'])) {
     //     $name = $_POST['name'];
     // }
