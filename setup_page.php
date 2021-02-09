@@ -28,7 +28,7 @@ if (isset($_POST['host']) and isset($_POST['username']) and $_POST['host'] != ""
         $name = $_POST['select_box'];
     }   
     $_SESSION['db_name'] = $name;
-    mysqli_close($con);
+    // mysqli_close($con);
     $con = mysqli_connect("$host", "$user", "$pass", "$name");
     if (mysqli_connect_errno()) {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
