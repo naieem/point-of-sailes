@@ -395,12 +395,6 @@ include_once("init.php");
 								$i = 1;
                                 $no = $page - 1;
                                 $no = $no * $limit;
-                                if ($db->count > 0){
-                                    foreach ($result as $row) { 
-                                        $co++;
-                                        // echo $line->transactionid.'/n';
-                                    }
-                                }
                                 foreach ($result as $row) {
 									$count++;
 									$co1++;
