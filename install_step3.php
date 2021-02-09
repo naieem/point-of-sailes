@@ -87,8 +87,7 @@ if (isset($_POST['submit']) and isset($_POST['uname']) and isset($_POST['passwor
     if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
     $conn->close();
-    header("location: install_step4.php");
-    exit;
+    echo "<script>window.location = 'install_step4.php';</script>";
     } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
     }
