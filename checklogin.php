@@ -14,14 +14,17 @@ $mypassword = $_REQUEST['password'];
 $myusername = stripslashes($myusername);
 $mypassword = stripslashes($mypassword);
 
-// $myusername = mysqli_real_escape_string($db->connection, $myusername);
-// $mypassword = mysqli_real_escape_string($db->connection, $mypassword);
+$myusername = $db->escape ($myusername);
+$mypassword = $db->escape ($mypassword);
 
 // $sql = "SELECT * FROM $tbl_name WHERE username='$myusername' and password='$mypassword'";
 $db->where ('username', $myusername);
 $db->where ('password', $mypassword);
-$results = $db->get($tbl_name);
+$results = $db->JsonBuilder()->get($tbl_name);
 var_dump($results);
+if ($db->count > 0){
+    echo $results[0]['email'];
+}
 // $result = mysqli_query($db->connection, $sql);
 // // mysqli_num_row is counting table row
 // $count = mysqli_num_rows($result);
