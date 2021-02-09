@@ -13,8 +13,8 @@ $db = new MysqliDb ($host, $user, $pass,$name);
 # Note that filters and validators are separate rule sets and method calls. There is a good reason for this.
 
 // require "lib/gump.class.php";
-$db->withTotalCount()->get('store_details');
-echo $db->totalCount;
+// $db->withTotalCount()->get('store_details');
+// echo $db->totalCount;
 // $count = $db->countOfAll("store_details");
 // if ($count > 1) {
 //     header("location: index.php");
@@ -53,7 +53,7 @@ if (isset($_POST['submit']) and $_POST['submit'] === 'Upload') {
             $upload = $_FILES["file"]["name"];
             $data = Array (
                 "log" => "$upload",
-               "type" => "$type",
+               "type" => "$type"
             );
             $id = $db->insert ('store_details', $data);
             if ($id)
