@@ -2518,6 +2518,7 @@ class MysqliDb
                     $this->_query .= $this->_buildPair ($operator, $val);
         }
     }
+    
 }
 
 // END class

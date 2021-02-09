@@ -37,8 +37,4 @@ if (isset($_REQUEST['msg']) && isset($_REQUEST['type'])) {
     else if ($_REQUEST['type'] == "infomation")
         $POS['msg'] = "<div class='information-box round'>" . $_REQUEST['msg'] . "</div>";
 }
-
-// function getCountOfTables($tablename){
-//     $count = $db->getValue ("users", "count(*)");
-// }
 ?>

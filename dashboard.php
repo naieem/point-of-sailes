@@ -121,7 +121,7 @@ include_once("init.php");
                         </tr>
                         <tr>
                             <td align="left">Total number of Suppliers</td>
-                            <td align="left"><?php echo $count = $db->getValue ("stock_supplier_detailsavail", "count(*)");?></td>
+                            <td align="left"><?php echo $count = $db->getValue ("supplier_details", "count(*)");?></td>
                         </tr>
                         <tr>
                             <td align="left">&nbsp;</td>

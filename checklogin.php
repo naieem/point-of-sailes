@@ -21,9 +21,8 @@ $mypassword = $db->escape ($mypassword);
 $db->where ('username', $myusername);
 $db->where ('password', $mypassword);
 $results = $db->ObjectBuilder()->get($tbl_name);
-// var_dump($results);
 if ($db->count > 0 && $db->count < 2){
-    echo $results[0]->username;
+    // echo $results[0]->username;
     $_SESSION['id'] = $results[0]->id;
     $_SESSION['username'] =$results[0]->username;
     $_SESSION['usertype'] = $results[0]->user_type;
