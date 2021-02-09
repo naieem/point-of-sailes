@@ -21,29 +21,17 @@ $mypassword = $db->escape ($mypassword);
 $db->where ('username', $myusername);
 $db->where ('password', $mypassword);
 $results = $db->ObjectBuilder()->get($tbl_name);
-var_dump($results);
-if ($db->count > 0){
+// var_dump($results);
+if ($db->count > 0 && $db->count < 2){
     echo $results[0]->username;
+    $_SESSION['id'] = $results[0]->id;
+    $_SESSION['username'] =$results[0]->username;
+    $_SESSION['usertype'] = $results[0]->usertype;
+    if ($results[0]->usertype == "admin")
+        header("location: dashboard.php");
+    else
+        die("Not Valid User Type. Check with your application administartor");
+}else {
+        header("location: index.php?msg=Wrong%20Username%20or%20Password&type=error");
 }
-// $result = mysqli_query($db->connection, $sql);
-// // mysqli_num_row is counting table row
-// $count = mysqli_num_rows($result);
-// If result matched $myusername and $mypassword, table row must be 1 row
-
-// if ($count == 1) {
-// // Register $myusername, $mypassword and redirect to file "dashboard.php"
-//     $row = mysqli_fetch_row($result);
-
-//     $_SESSION['id'] = $row[0];
-//     $_SESSION['username'] = $row[1];
-//     $_SESSION['usertype'] = $row[3];
-
-//     if ($row[3] == "admin")
-//         header("location: dashboard.php");
-//     else
-//         die("Not Valid User Type. Check with your application administartor");
-
-// } else {
-//     header("location: index.php?msg=Wrong%20Username%20or%20Password&type=error");
-// }
 ?>
