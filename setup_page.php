@@ -7,24 +7,24 @@ if (isset($_POST['host']) and isset($_POST['username']) and $_POST['host'] != ""
     $pass = trim($_POST['password']);
     $name = '';
     echo $host .' '.$user.' '. $pass;
-    // if (isset($_POST['name'])) {
-    //     $name = $_POST['name'];
-    // }
-    // if (isset($_POST['select_box'])) {
-    //     $name = $_POST['select_box'];
-    // }
-    // $_SESSION['host'] = $host;
-    // $_SESSION['user'] = $user;
-    // $_SESSION['pass'] = $pass;
-    // $_SESSION['db_name'] = $name;
+    if (isset($_POST['name'])) {
+        $name = $_POST['name'];
+    }
+    if (isset($_POST['select_box'])) {
+        $name = $_POST['select_box'];
+    }
+    $_SESSION['host'] = $host;
+    $_SESSION['user'] = $user;
+    $_SESSION['pass'] = $pass;
+    $_SESSION['db_name'] = $name;
     
 
-    // $con = mysqli_connect("$host", "$user", "$pass");
-    // if (!$con) {
-    //     $data = "Database Configration is Not vaild";
-    //     header("location: install_step1.php?msg=$data");
-    //     exit;
-    // }
+    $con = mysqli_connect("$host", "$user", "$pass");
+    if (!$con) {
+        $data = "Database Configration is Not vaild";
+        header("location: install_step1.php?msg=$data");
+        exit;
+    }
     // if (isset($_POST['name'])) {
     //     $sql = "CREATE DATABASE $name";
     //     if (!mysqli_query($con, $sql)) {
