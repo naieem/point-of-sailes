@@ -69,12 +69,6 @@ $host = $_SESSION['host'];
 $user = $_SESSION['user'];
 $pass = $_SESSION['pass'];
 $name = $_SESSION['db_name'];
-// Open the base (construct the object):
-// $db = new DB($name, $host, $user, $pass);
-// echo $name;
-// echo $host;
-// echo $user;
-// echo $pass;
 // Create connection
 $conn = new mysqli($host, $user, $pass,$name);
 // Check connection
@@ -86,25 +80,18 @@ if ($conn->connect_error) {
 require "lib/gump.class.php";
 
 if (isset($_POST['submit']) and isset($_POST['uname']) and isset($_POST['password']) and isset($_POST['answer'])) {
-    // $host = $_SESSION['host'];
-    // $user = $_SESSION['user'];
-    // $pass = $_SESSION['pass'];
-    // $name = $_SESSION['db_name'];
-    // $con = mysqli_connect("$host", "$user", "$pass", "$name");
     $uname = $_POST['uname'];
     $password = $_POST['password'];
     $answer = $_POST['answer'];
-    // $sql = "INSERT INTO `stock_user` (`id`, `username`, `password`, `user_type`) VALUES (NULL,$uname, $password, $answer);";
-    // $db->query($sql);
     $sql = "INSERT INTO `stock_user` (`id`, `username`, `password`, `user_type`,`answer`) VALUES (NULL,'{$uname}', '{$password}', 'admin','{$answer}')";
     if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
     $conn->close();
+    header("location: install_step4.php");
+    exit;
     } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
     }
-    // echo "<script>window.location = 'install_step4.php';</script>";
-    // exit;
 }
 ?>
 
