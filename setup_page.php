@@ -25,23 +25,23 @@ if (isset($_POST['host']) and isset($_POST['username']) and $_POST['host'] != ""
         header("location: install_step1.php?msg=$data");
         exit;
     }
-    // if (isset($_POST['name'])) {
-    //     $sql = "CREATE DATABASE $name";
-    //     if (!mysqli_query($con, $sql)) {
-    //         $data = "This Database Name Is Already In the DataBase";
-    //         header("location: install_step2.php?msg=$data");
-    //         exit;
-    //     }
-    // }
-    // if (mysqli_connect_errno()) {
-    //     echo "Failed to connect to MySQL: " . mysqli_connect_error();
-    // }
+    if (isset($_POST['name'])) {
+        $sql = "CREATE DATABASE $name";
+        if (!mysqli_query($con, $sql)) {
+            $data = "This Database Name Is Already In the DataBase";
+            header("location: install_step2.php?msg=$data");
+            exit;
+        }
+    }
+    if (mysqli_connect_errno()) {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    }
 
-    // if (isset($_POST['dummy'])) {
-    //     $sql = file_get_contents('install_db/structure_with_demo.sql');
-    // } else {
-    //     $sql = file_get_contents('install_db/structure_only.sql');
-    // }
+    if (isset($_POST['dummy'])) {
+        $sql = file_get_contents('install_db/structure_with_demo.sql');
+    } else {
+        $sql = file_get_contents('install_db/structure_only.sql');
+    }
 
     // /* execute multi query */
     // if (mysqli_multi_query($con, $sql)) {
