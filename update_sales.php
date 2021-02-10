@@ -23,8 +23,6 @@ include_once("init.php");
     <script src="js/date_pic/jquery.date_input.js"></script>
     <script src="lib/auto/js/jquery.autocomplete.js "></script>
     <script src="js/script.js"></script>
-    <script src="js/update_sales.js"></script>
-
 </head>
 
 <body>
@@ -327,6 +325,7 @@ include_once("init.php");
                                     <td> &nbsp;</td>
                                 </tr>
                             </table> -->
+                            <!-- Edit table holder -->
                             <table class="form" id="display" style="display:none">
                                 <tr>
 
@@ -335,7 +334,7 @@ include_once("init.php");
                                             value="<?php echo isset($supplier) ? $supplier : ''; ?>" /></td>
 
                                     <td><input name="" type="text" id="quty" maxlength="200" class="round  my_with"
-                                            onKeyPress="quantity_chnage(event);return numbersonly(event)"
+                                            onchange="return numbersonly(event)"
                                             onkeyup="stock_size();total_amount();unique_check();"
                                             value="<?php echo isset($category) ? $category : ''; ?>" /></td>
 
@@ -372,7 +371,7 @@ include_once("init.php");
 
                                         <td>Price</td>
                                         <td>Available Stock</td>
-                                        <td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total</td>
+                                        <td>Total</td>
                                         <td> &nbsp;</td>
                                     </tr>
                                     <?php
@@ -508,8 +507,8 @@ include_once("init.php");
                             <table class="form">
                                 <tr>
                                     <td>
-                                        <input class="button round blue text-upper" type="submit"
-                                            name="Submit" value="Update">
+                                        <input class="button round blue text-upper" type="submit" name="Submit"
+                                            value="Update">
                                     </td>
                                     <td> (Control + S)
                                         <input class="button round red text-upper" type="reset" name="Reset"
@@ -544,5 +543,6 @@ include_once("init.php");
         <!-- end footer -->
 
 </body>
+<script src="js/update_sales.js"></script>
 
 </html>
