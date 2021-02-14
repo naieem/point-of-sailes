@@ -6,7 +6,7 @@ include_once("init.php");
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Point of sale - Add supplier</title>
+        <title>POSNIC - Add supplier</title>
 
         <!-- Stylesheets -->
         <!---->
@@ -386,6 +386,8 @@ include_once("init.php");
                         </div>
                     </div>
                     <div id="footer">
+                        <p>
+                        </p>
 
                     </div>
                     <!-- end footer -->

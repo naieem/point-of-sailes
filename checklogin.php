@@ -1,9 +1,8 @@
 <?php
 session_start();
-require_once('lib/MysqliDB.class.php');
+include("lib/db.class.php");
 include_once "config.php";
-$db = new MysqliDb ( $config['host'], $config['username'], $config['password'],$config['database']);
-
+$db = new DB($config['database'], $config['host'], $config['username'], $config['password']);
 $tbl_name = "stock_user"; // Table name
 
 // username and password sent from form 
@@ -14,23 +13,29 @@ $mypassword = $_REQUEST['password'];
 $myusername = stripslashes($myusername);
 $mypassword = stripslashes($mypassword);
 
-$myusername = $db->escape ($myusername);
-$mypassword = $db->escape ($mypassword);
+$myusername = mysqli_real_escape_string($db->connection, $myusername);
+$mypassword = mysqli_real_escape_string($db->connection, $mypassword);
 
-// $sql = "SELECT * FROM $tbl_name WHERE username='$myusername' and password='$mypassword'";
-$db->where ('username', $myusername);
-$db->where ('password', $mypassword);
-$results = $db->ObjectBuilder()->get($tbl_name);
-if ($db->count > 0 && $db->count < 2){
-    // echo $results[0]->username;
-    $_SESSION['id'] = $results[0]->id;
-    $_SESSION['username'] =$results[0]->username;
-    $_SESSION['usertype'] = $results[0]->user_type;
-    if ($results[0]->user_type == "admin")
+$sql = "SELECT * FROM $tbl_name WHERE username='$myusername' and password='$mypassword'";
+$result = mysqli_query($db->connection, $sql);
+// mysqli_num_row is counting table row
+$count = mysqli_num_rows($result);
+// If result matched $myusername and $mypassword, table row must be 1 row
+
+if ($count == 1) {
+// Register $myusername, $mypassword and redirect to file "dashboard.php"
+    $row = mysqli_fetch_row($result);
+
+    $_SESSION['id'] = $row[0];
+    $_SESSION['username'] = $row[1];
+    $_SESSION['usertype'] = $row[3];
+
+    if ($row[3] == "admin")
         header("location: dashboard.php");
     else
         die("Not Valid User Type. Check with your application administartor");
-}else {
-        header("location: index.php?msg=Wrong%20Username%20or%20Password&type=error");
+
+} else {
+    header("location: index.php?msg=Wrong%20Username%20or%20Password&type=error");
 }
 ?>

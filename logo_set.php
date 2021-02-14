@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>POS- Store Logo</title>
+    <title>POSNIC - Store Logo</title>
 
     <!-- Stylesheets -->
 
@@ -56,7 +56,7 @@
         <a href="#" id="company-branding" class="fr"><img src="<?php if (isset($_SESSION['logo'])) {
                 echo "upload/" . $_SESSION['logo'];
             } else {
-                echo "upload/samplelogo.jpeg";
+                echo "upload/posnic.png";
             } ?>" alt="Point of Sale"/></a>
 
     </div>

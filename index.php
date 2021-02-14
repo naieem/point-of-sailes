@@ -3,6 +3,9 @@ session_start();
 if (!file_exists("config.php") || !include_once "config.php") {
     header("location: install_step1.php");
 }
+if (!defined('posnicEntry')) {
+    define('posnicEntry', true);
+}
 if (isset($_SESSION['username'])) {
     if ($_SESSION['usertype'] == 'admin') // if session variable "username" does not exist.
         header("location: dashboard.php"); // Re-direct to index.php
@@ -13,8 +16,7 @@ if (isset($_SESSION['username'])) {
 <html lang="en">
 <head>
     <meta charset="utf-8">
-
-    <title>Point of sale - Login to Control Panel</title>
+    <title>POSNIC - Login to Control Panel</title>
 
     <!-- Stylesheets -->
 
@@ -119,11 +121,11 @@ if (isset($_SESSION['username'])) {
             <input type="submit" class="button round blue image-right ic-right-arrow" name="submit" value="LOG IN"/>
         </fieldset>
 
-<!--        <br/>-->
-<!---->
-<!--        <div class="information-box round">Just click on the "LOG IN" button to continue, no login information-->
-<!--            required.-->
-<!--        </div>-->
+        <br/>
+
+        <div class="information-box round">Just click on the "LOG IN" button to continue, no login information
+            required.
+        </div>
 
     </form>
 
@@ -133,8 +135,8 @@ if (isset($_SESSION['username'])) {
 
 <!-- FOOTER -->
 <div id="footer">
-<!--    <p>Any Queries email to <a href="mailto:sridhar.posnic@gmail.com?subject=Stock%20Management%20System">sridhar.posnic@gmail.com</a>.-->
-<!--    </p>-->
+    <p>
+    </p>
 
 
 </div>

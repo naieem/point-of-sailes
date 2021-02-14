@@ -6,7 +6,7 @@ include_once("init.php");
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Point of sale - Add Purchase</title>
+        <title>POSNIC - Add Purchase</title>
 
         <!-- Stylesheets -->
 
@@ -119,11 +119,12 @@ include_once("init.php");
                                 $cost = "";
                                 //$bill_no = "";
 
-                                echo "sdfd";
+
                                 if ($validated_data === false) {
                                     echo $gump->get_readable_errors(true);
                                 } else {
                                     $username = $_SESSION['username'];
+
                                     $purchaseid = mysqli_real_escape_string($db->connection, $_POST['purchaseid']);
 
                                     //$bill_no = mysqli_real_escape_string($db->connection, $_POST['bill_no']);
@@ -335,6 +336,9 @@ include_once("init.php");
 
         <!-- FOOTER -->
         <div id="footer">
+            <p>
+            </p>
+
         </div>
         <!-- end footer -->
 

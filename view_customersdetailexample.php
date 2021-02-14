@@ -798,9 +798,9 @@ include_once "db.php";
                     </td>
                 </tr>
                 <tr>
-<!--                    <td height="30" align="center" bgcolor="#72C9F4"><span class="style1"><a-->
-<!--                                href="mailto:sridhar.posnic@gmail.com?Subject=Stock%20Management%20System">Any Queries-->
-<!--                                Mail to : sridhar.posnic@gmail.com</a></span></td>-->
+                    <td height="30" align="center" bgcolor="#72C9F4"><span class="style1"><a
+                                href="mailto:sridhar.posnic@gmail.com?Subject=Stock%20Management%20System">Any Queries
+                                Mail to : sridhar.posnic@gmail.com</a></span></td>
                 </tr>
             </table>
         </td>

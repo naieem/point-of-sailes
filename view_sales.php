@@ -7,7 +7,7 @@ include_once("init.php");
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Point of sale - Stock</title>
+    <title>POSNIC - Stock</title>
 
     <!-- Stylesheets -->
     <!---->
@@ -172,10 +172,11 @@ include_once("init.php");
 
 
                                 }
-                                $total_pages =$db->ObjectBuilder()->rawQueryOne($query);
-                                // $total_pages = mysqli_fetch_array(mysqli_query($db->connection, $query));
-                                $total_pages = $total_pages->num;
-                                // echo $total_pages;
+
+
+                                $total_pages = mysqli_fetch_array(mysqli_query($db->connection, $query));
+                                $total_pages = $total_pages['num'];
+
 
                                 /* Setup vars for query. */
 
@@ -203,15 +204,11 @@ include_once("init.php");
 								//Count number of records
 								$co=0;
 								$co1=0;
-								// $s=mysqli_query($db->connection, "select * from stock_sales");
-                                $results = $db->ObjectBuilder()->rawQuery('select * from stock_sales');
-                                // var_dump($r);
-                                if ($db->count > 0){
-                                    foreach ($results as $line) { 
-                                        $co++;
-                                        // echo $line->transactionid.'/n';
-                                    }
-                                }
+								$s=mysqli_query($db->connection, "select * from stock_sales");
+								while($r= mysqli_fetch_array($s))
+								{
+									$co++;
+								}
 								
 
                                 $sql = "SELECT * FROM stock_sales ORDER BY id desc LIMIT $start, $limit  ";
@@ -223,7 +220,9 @@ include_once("init.php");
                                 }
 
 
-                                $result = $db->rawQuery($sql);
+                                $result = mysqli_query($db->connection, $sql);
+
+
                                 /* Setup page vars for display. */
 
                                 if ($page == 0) $page = 1;                    //if no page var is given, default to 1.
@@ -390,12 +389,12 @@ include_once("init.php");
                                 </tr>
 
                                 <?php
-                                $count=0;
+$count=0;
 
 								$i = 1;
                                 $no = $page - 1;
                                 $no = $no * $limit;
-                                foreach ($result as $row) {
+                                while ($row = mysqli_fetch_array($result)) {
 									$count++;
 									$co1++;
                                     ?>
@@ -454,6 +453,9 @@ include_once("init.php");
                 </div>
             </div>
             <div id="footer">
+                <p>
+                </p>
+
             </div>
             <!-- end footer -->
 

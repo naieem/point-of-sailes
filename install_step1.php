@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Point of sale - Login to Control Panel</title>
+    <title>POSNIC - Login to Control Panel</title>
 
     <!-- Stylesheets -->
 
@@ -86,19 +86,19 @@
 
             <p>
                 <label for="login-host">DataBase Host Name</label>
-                <input type="text" id="host" class="round full-width-input" value="bklfqjg2tienaptbqtac-mysql.services.clever-cloud.com"
+                <input type="text" id="host" class="round full-width-input" value="localhost"
                        name="host" autofocus/>
             </p>
 
             <p>
                 <label for="login-user">DataBase User Name</label>
-                <input type="text" id="username" name="username" value="uxououwimhcih4l4"
+                <input type="text" id="username" name="username" value="root"
                        class="round full-width-input"/>
             </p>
 
             <p>
                 <label for="login-password">DataBase User Password</label>
-                <input type="password" id="password" name="password" placeholder="" value="s9iFXk24SMo1gOd3Pbhx"
+                <input type="password" id="password" name="password" placeholder=""
                        class="round full-width-input"/>
             </p>
             
@@ -117,6 +117,8 @@
 
 <!-- FOOTER -->
 <div id="footer">
+    <p>
+    </p>
 </div>
 <!-- end footer -->
 

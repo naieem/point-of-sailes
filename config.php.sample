@@ -1,10 +1,10 @@
 <?php
 
-$config["database"] = "posnicbasic";
+$config["database"] = "pointofsale";
 
-$config["host"]= "localhost";
+$config["host"]= "node68640-env-9805676.fr-1.paas.massivegrid.net";
 
 $config["username"]= "root";
 
-$config["password"]= "";
+$config["password"]= "GEOfhn36090";
 ?>

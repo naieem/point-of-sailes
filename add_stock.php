@@ -7,7 +7,7 @@ include_once("init.php");
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Point of sale - Add Stock Category</title>
+    <title>POSNIC - Add Stock Category</title>
 
     <!-- Stylesheets -->
 
@@ -106,7 +106,6 @@ include_once("init.php");
                         $gump->validation_rules(array(
                             'name' => 'required|max_len,100|min_len,3',
                             'stockid' => 'required|max_len,200',
-                            'stock' => 'required|max_len,200',
                             'sell' => 'required|max_len,200',
                             'cost' => 'required|max_len,200',
                             'supplier' => 'max_len,200',
@@ -117,7 +116,6 @@ include_once("init.php");
                         $gump->filter_rules(array(
                             'name' => 'trim|sanitize_string|mysqli_escape',
                             'stockid' => 'trim|sanitize_string|mysqli_escape',
-                            'stock' => 'trim|sanitize_string|mysqli_escape',
                             'sell' => 'trim|sanitize_string|mysqli_escape',
                             'cost' => 'trim|sanitize_string|mysqli_escape',
                             'category' => 'trim|sanitize_string|mysqli_escape',
@@ -132,15 +130,15 @@ include_once("init.php");
                         $cost = "";
                         $supplier = "";
                         $category = "";
-                        $stock = "";
 
 
                         if ($validated_data === false) {
                             echo $gump->get_readable_errors(true);
                         } else {
+
+
                             $name = mysqli_real_escape_string($db->connection, $_POST['name']);
                             $stockid = mysqli_real_escape_string($db->connection, $_POST['stockid']);
-                            $stock = mysqli_real_escape_string($db->connection, $_POST['stock']);
                             $sell = mysqli_real_escape_string($db->connection, $_POST['sell']);
                             $cost = mysqli_real_escape_string($db->connection, $_POST['cost']);
                             $supplier = mysqli_real_escape_string($db->connection, $_POST['supplier']);
@@ -152,9 +150,9 @@ include_once("init.php");
                                 echo "<font color=red> Dublicat Entry. Please Verify</font>";
                             } else {
 
-                                if ($db->query("insert into stock_details(stock_id,stock_name,stock_quatity,supplier_id,company_price,selling_price,category) values('$stockid','$name',$stock,'$supplier','$cost','$sell','$category')")) {
+                                if ($db->query("insert into stock_details(stock_id,stock_name,stock_quatity,supplier_id,company_price,selling_price,category) values('$stockid','$name',0,'$supplier','$cost','$sell','$category')")) {
                                     echo "<br><font color=green size=+1 > [ $name ] Stock Details Added !</font>";
-                                    $db->query("insert into stock_avail(name,quantity,stock_id) values('$name',$stock,'$stockid')");
+                                    $db->query("insert into stock_avail(name,quantity) values('$name',0)");
                                 } else
                                     echo "<br><font color=red size=+1 >Problem in Adding !</font>";
 
@@ -169,6 +167,8 @@ include_once("init.php");
                     ?>
 
                     <form name="form1" method="post" id="form1" action="">
+
+
                         <table class="form" border="0" cellspacing="0" cellpadding="0">
                             <tr>
                                 <?php
@@ -215,16 +215,6 @@ include_once("init.php");
                             </tr>
 
                             <tr>
-                                <td><span class="man">*</span>Stock:</td>
-                                <td><input name="stock" placeholder="ENTER STOCK NUMBER" type="text" id="stock"
-                                           maxlength="200" class="round default-width-input"
-                                           value="<?php echo isset($stock) ? $stock : ''; ?>"/></td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-
-                            </tr>
-
-                            <tr>
                                 <td>&nbsp;</td>
                                 <td>&nbsp;</td>
                             </tr>
@@ -263,6 +253,9 @@ include_once("init.php");
 
     <!-- FOOTER -->
     <div id="footer">
+        <p>
+        </p>
+
     </div>
     <!-- end footer -->
 

@@ -50,7 +50,6 @@ CREATE TABLE `customer_details` (
 CREATE TABLE `stock_avail` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(120) NOT NULL,
-  `stock_id` varchar(120) NOT NULL,
   `quantity` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

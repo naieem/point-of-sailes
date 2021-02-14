@@ -7,7 +7,7 @@ include_once("init.php");
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Point of sale - Update Supplier</title>
+    <title>POSNIC - Update Supplier</title>
 
     <!-- Stylesheets -->
 
@@ -20,7 +20,7 @@ include_once("init.php");
     <?php include_once("tpl/common_js.php"); ?>
     <script src="js/script.js"></script>
     <script src="js/update_stock.js"></script>
-
+  
 </head>
 <body>
 
@@ -86,7 +86,7 @@ include_once("init.php");
 
                 <div class="content-module-heading cf">
 
-                    <h3 class="fl">Update Stock</h3>
+                    <h3 class="fl">Update Supplier</h3>
                     <span class="fr expand-collapse-text">Click to collapse</span>
                     <span class="fr expand-collapse-text initial-expand">Click to expand</span>
 
@@ -104,15 +104,13 @@ include_once("init.php");
                                 $name = trim(mysqli_real_escape_string($db->connection, $_POST['name']));
                                 $sell = trim(mysqli_real_escape_string($db->connection, $_POST['sell']));
                                 $cost = trim(mysqli_real_escape_string($db->connection, $_POST['cost']));
-                                $stock = mysqli_real_escape_string($db->connection, $_POST['stock']);
                                 $Category = trim(mysqli_real_escape_string($db->connection, $_POST['Category']));
                                 $date = trim(mysqli_real_escape_string($db->connection, $_POST['date']));
                                 $supplier = trim(mysqli_real_escape_string($db->connection, $_POST['supplier']));
 
-                                if ($db->query("UPDATE stock_details  SET stock_name ='$name',stock_quatity='$stock',supplier_id='$supplier',company_price='$cost',selling_price='$sell',category='$Category',date='$date'  where stock_id='$id'"))
-                                    if($db->query("UPDATE stock_avail  SET quantity ='$stock',name='$name' where stock_id='$id'")){
-                                        echo "<br><font color=green size=+1 > [ $name ] Stock Details Updated!</font>";
-                                    }
+
+                                if ($db->query("UPDATE stock_details  SET stock_name ='$name',supplier_id='$supplier',company_price='$cost',selling_price='$sell',category='$Category',date='$date'  where id=$id"))
+                                    echo "<br><font color=green size=+1 > [ $name ] Supplier Details Updated!</font>";
                                 else
                                     echo "<br><font color=red size=+1 >Problem in Updation !</font>";
 
@@ -121,14 +119,14 @@ include_once("init.php");
 
                             ?>
                             <?php
-                            if (isset($_GET['sid']) && !empty($_GET['sid'])){
+                            if (isset($_GET['sid']))
                                 $id = $_GET['sid'];
 
                             $line = $db->queryUniqueObject("SELECT * FROM stock_details WHERE id=$id");
                             ?>
                             <form name="form1" method="post" id="form1" action="">
 
-                                <input name="id" type="hidden" value="<?php echo $line->stock_id; ?>">
+                                <input name="id" type="hidden" value="<?php echo $_GET['sid']; ?>">
                                 <tr>
                                     <td>&nbsp;</td>
                                     <td>Stock ID</td>
@@ -174,17 +172,7 @@ include_once("init.php");
                                                class="round default-width-input"
                                                value="<?php echo $line->date; ?>"/></td>
                                 </tr>
-                                <tr>
-                                    <td></td>
-                                    <td><span class="man">*</span>Stock:</td>
-                                    <td><input name="stock" placeholder="ENTER STOCK NUMBER" type="text" id="stock"
-                                               maxlength="200" class="round default-width-input"
-                                               value="<?php echo $line->stock_quatity; ?>"
-                                               onkeypress="return numbersonly(event)"/></td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
 
-                                </tr>
 
                                 <tr>
                                     <td>&nbsp;</td>
@@ -201,11 +189,6 @@ include_once("init.php");
                                 </tr>
                         </table>
                     </form>
-                    <?php
-                    }else{
-                                echo "<p>Sorry no stock id supplied</p>";
-                    }
-                    ?>
 
 
                 </div>
@@ -225,6 +208,8 @@ include_once("init.php");
 
     <!-- FOOTER -->
     <div id="footer">
+        <p>
+        </p>
 
     </div>
     <!-- end footer -->

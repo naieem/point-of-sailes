@@ -1,9 +1,8 @@
 <?php session_start(); ?>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
-    <title>Point of sale - User</title>
+    <title>POSNIC - User</title>
 
     <!-- Stylesheets -->
 
@@ -18,126 +17,123 @@
 
 
     <!-- Optimize for mobile devices -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
-
 <body>
 
-    <!--    Only Index Page for Analytics   -->
+<!--    Only Index Page for Analytics   -->
 
-    <!-- TOP BAR -->
-    <div id="top-bar">
+<!-- TOP BAR -->
+<div id="top-bar">
 
-        <div class="page-full-width">
+    <div class="page-full-width">
 
-            <!--<a href="#" class="round button dark ic-left-arrow image-left ">See shortcuts</a>-->
-
-        </div>
-        <!-- end full-width -->
+        <!--<a href="#" class="round button dark ic-left-arrow image-left ">See shortcuts</a>-->
 
     </div>
-    <!-- end top-bar -->
+    <!-- end full-width -->
+
+</div>
+<!-- end top-bar -->
 
 
-    <!-- HEADER -->
-    <div id="header">
+<!-- HEADER -->
+<div id="header">
 
-        <div class="page-full-width cf">
+    <div class="page-full-width cf">
 
-            <div id="login-intro" class="fl">
+        <div id="login-intro" class="fl">
 
-                <h1>User Details </h1>
+            <h1>User Details </h1>
 
-
-            </div>
-            <!-- login-intro -->
-
-            <!-- Change this image to your own company's logo -->
-            <!-- The logo will automatically be resized to 39px height. -->
-            <a href="#" id="company-branding" class="fr"><img src="upload/posnic.png" alt="Point of Sale" /></a>
 
         </div>
-        <!-- end full-width -->
+        <!-- login-intro -->
+
+        <!-- Change this image to your own company's logo -->
+        <!-- The logo will automatically be resized to 39px height. -->
+        <a href="#" id="company-branding" class="fr"><img src="upload/posnic.png" alt="Point of Sale"/></a>
 
     </div>
-    <!-- end header -->
+    <!-- end full-width -->
 
-    <?php
-// include("lib/db.class.php");
+</div>
+<!-- end header -->
+
+<?php
+include("lib/db.class.php");
 
 $host = $_SESSION['host'];
 $user = $_SESSION['user'];
 $pass = $_SESSION['pass'];
 $name = $_SESSION['db_name'];
-// Create connection
-$conn = new mysqli($host, $user, $pass,$name);
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
+// Open the base (construct the object):
+$db = new DB($name, $host, $user, $pass);
+
 # Note that filters and validators are separate rule sets and method calls. There is a good reason for this.
 
-// require "lib/gump.class.php";
+require "lib/gump.class.php";
 
 if (isset($_POST['submit']) and isset($_POST['uname']) and isset($_POST['password']) and isset($_POST['answer'])) {
+    $host = $_SESSION['host'];
+    $user = $_SESSION['user'];
+    $pass = $_SESSION['pass'];
+    $name = $_SESSION['db_name'];
+    $con = mysqli_connect("$host", "$user", "$pass", "$name");
     $uname = $_POST['uname'];
     $password = $_POST['password'];
     $answer = $_POST['answer'];
-    $sql = "INSERT INTO `stock_user` (`id`, `username`, `password`, `user_type`,`answer`) VALUES (NULL,'{$uname}', '{$password}', 'admin','{$answer}')";
-    if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
-    $conn->close();
-    header("location: index.php");
-        exit;
-    } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-    }
+    $db->query("UPDATE stock_user  SET username ='" . $uname . "',password='" . $password . "',answer='" . $answer . "'");
+    echo "<script>window.location = 'install_step4.php';</script>";
+    // exit;
 }
 ?>
 
-    <!-- MAIN CONTENT -->
-    <div id="content">
+<!-- MAIN CONTENT -->
+<div id="content">
 
-        <form action="" method="POST" id="login-form" class="cmxform" autocomplete="off">
+    <form action="" method="POST" id="login-form" class="cmxform" autocomplete="off">
 
-            <fieldset>
+        <fieldset>
 
-                <p>
-                    <label>UserName</label>
-                    <input type="text" name="uname" id="uname" class="round full-width-input"
-                        placeholder="Enter User Name" autofocus />
-                </p>
+            <p>
+                <label>UserName</label>
+                <input type="text" name="uname" id="uname" class="round full-width-input" placeholder="Enter User Name"
+                       autofocus/>
+            </p>
 
-                <p>
-                    <label>Password</label>
-                    <input type="password" name="password" id="password" class="round full-width-input"
-                        placeholder="Enter Password" autofocus />
-                </p>
+            <p>
+                <label>Password</label>
+                <input type="password" name="password" id="password" class="round full-width-input"
+                       placeholder="Enter Password" autofocus/>
+            </p>
 
-                <p>
-                    <label>Security Question</label>
-                    What's your favorite movie?
-                    <input type="text" name="answer" id="answer" class="round full-width-input"
-                        placeholder="Enter Answer" autofocus />
-                </p>
+            <p>
+                <label>Security Question</label>
+                What's your favorite movie?
+                <input type="text" name="answer" id="answer" class="round full-width-input" placeholder="Enter Answer"
+                       autofocus/>
+            </p>
 
-                <!--<a href="dashboard.php" class="button round blue image-right ic-right-arrow">LOG IN</a>-->
-                <input type="submit" class="button round blue image-right ic-right-arrow" name="submit" value="Next" />
-                <a href="index.php" class="button round blue image-right ic-right-arrow">Skip</a>
-                &nbsp;
-            </fieldset>
-        </form>
+            <!--<a href="dashboard.php" class="button round blue image-right ic-right-arrow">LOG IN</a>-->
+            <input type="submit" class="button round blue image-right ic-right-arrow" name="submit" value="Next"/>
+            &nbsp;</fieldset>
+    </form>
 
-    </div>
-    <!-- end content -->
+</div>
+<!-- end content -->
 
 
-    <!-- FOOTER -->
-    <div id="footer">
+<!-- FOOTER -->
+<div id="footer">
 
-    </div>
-    <!-- end footer -->
+    <p>
+    </p>
+
+
+</div>
+<!-- end footer -->
 
 </body>
-
 </html>
+

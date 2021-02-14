@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Point of sale - Login to Control Panel</title>
+    <title>POSNIC - Login to Control Panel</title>
 
     <!-- Stylesheets -->
 
@@ -79,12 +79,12 @@
         $user = trim($_POST['username']);
         $pass = trim($_POST['password']);
     }
-    // $link = mysqli_connect("$host", "$user", "$pass");
-    // if (!$link) {
-    //     $data = "Database Configration is Not vaild";
-    //     header("location: install_step1.php?msg=$data");
-    //     exit;
-    // }
+    $link = mysqli_connect("$host", "$user", "$pass");
+    if (!$link) {
+        $data = "Database Configration is Not vaild";
+        header("location: install_step1.php?msg=$data");
+        exit;
+    }
 
     ?>
     <form action="setup_page.php" method="POST" id="login-form" class="cmxform" autocomplete="off">
@@ -169,6 +169,10 @@
 
 <!-- FOOTER -->
 <div id="footer">
+    <p>
+    </p>
+
+
 </div>
 <!-- end footer -->
 

@@ -6,7 +6,7 @@ include_once("init.php");
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Point of sale - Add supplier</title>
+        <title>POSNIC - Add supplier</title>
 
         <!-- Stylesheets -->
         <!---->
@@ -376,8 +376,8 @@ include_once("init.php");
                         </div>
                     </div>
                     <div id="footer">
-<!--                        <p>Any Queries email to <a href="mailto:sridhar.posnic@gmail.com?subject=Stock%20Management%20System">sridhar.posnic@gmail.com</a>.-->
-<!--                        </p>-->
+                        <p>
+                        </p>
 
                     </div>
                     <!-- end footer -->

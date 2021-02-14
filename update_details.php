@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Point of sale - Login to Control Panel</title>
+    <title>POSNIC - Login to Control Panel</title>
 
     <!-- Stylesheets -->
 
@@ -16,6 +16,7 @@
     <script src="js/lib/jquery.validate.min.js" type="text/javascript"></script>
     <script src="js/update_details.js" type="text/javascript"></script>
 
+  
 
     <!-- Optimize for mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -26,9 +27,10 @@
     $allowedExts = array("gif", "jpeg", "jpg", "png");
     $temp = explode(".", $_FILES["file"]["name"]);
     $extension = end($temp);
-//    var_dump($_FILES["file"]);
     if ((($_FILES["file"]["type"] == "image/gif")
-            || ($_FILES["file"]["type"] == "image/png")) && in_array($extension, $allowedExts)
+            || ($_FILES["file"]["type"] == "image/png"))
+        && ($_FILES["file"]["size"] < 30000)
+        && in_array($extension, $allowedExts)
     ) {
         if ($_FILES["file"]["error"] > 0) {
             echo "Return Code: " . $_FILES["file"]["error"] . "<br>";
@@ -55,10 +57,10 @@
             $db->query("UPDATE store_details  SET log ='" . $upload . "',type='" . $type . "'");
             ?>
             <script type="text/javascript">
-//                setTimeout("window.location.reload();", 4000);
+                setTimeout("window.location.reload();", 4000);
             </script>
             <?php
-//            echo "<script>window.location = 'update_details.php';</script>";
+            echo "<script>window.location = 'update_details.php';</script>";
 
         }
     } else {
@@ -229,10 +231,6 @@ if (isset($_POST['submit']) and isset($_POST['sname']) and isset($_POST['address
 
 <!-- FOOTER -->
 <div id="footer">
-
-    <!--    <p>Any Queries email to <a href="mailto:sridhar.posnic@gmail.com?subject=Stock%20Management%20System">sridhar.posnic@gmail.com</a>.-->
-    <!--    </p>-->
-
 
 </div>
 <!-- end footer -->

@@ -7,7 +7,7 @@ include_once("init.php");
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Point of sale - Add Stock Category</title>
+    <title>POSNIC - Add Stock Category</title>
 
     <!-- Stylesheets -->
 
@@ -230,8 +230,7 @@ include_once("init.php");
                         <table class="form" border="0" cellspacing="0" cellpadding="0">
                             <tr>
                                 <?php
-                                // $str = $db->maxOfAll("transactionid", "stock_sales");
-                                $str=$db->getValue ("stock_sales", "MAX(transactionid)"); 
+                                $str = $db->maxOfAll("transactionid", "stock_sales"); 
                                 $array = explode(' ', $str);                           
                                 $autoid = ++$array[0];
                                 if($str == ''){
@@ -251,7 +250,7 @@ include_once("init.php");
                                            value="<?php echo $autoid ?>"/></td>
                                 <?php }?>
                                 <td>Date:</td>
-                                <td><input name="date" id="test1" placeholder="" value="<?php date_default_timezone_set("Asia/Dhaka");echo date('Y-m-d H:i:s');?>"
+                                <td><input name="date" id="test1" placeholder="" value="<?php date_default_timezone_set("Asia/Kolkata");echo date('Y-m-d H:i:s');?>"
                                 style="margin-left: 15px;"type="text" id="name" maxlength="200" class="round default-width-input"/>
                                 </td>
                                
@@ -417,6 +416,9 @@ include_once("init.php");
 
 <!-- FOOTER -->
 <div id="footer">
+    <p>
+    </p>
+
 </div>
 <!-- end footer -->
 

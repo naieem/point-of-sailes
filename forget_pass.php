@@ -17,7 +17,7 @@ $gump = new GUMP();
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Point of sale - Store Logo</title>
+    <title>POSNIC - Store Logo</title>
 
     <!-- Stylesheets -->
 
@@ -154,10 +154,6 @@ $gump = new GUMP();
 
 <!-- FOOTER -->
 <div id="footer">
-
-<!--    <p>Any Queries email to <a href="mailto:sridhar.posnic@gmail.com?subject=Stock%20Management%20System">sridhar.posnic@gmail.com</a>.-->
-<!--    </p>-->
-
 
 </div>
 <!-- end footer -->

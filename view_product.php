@@ -6,7 +6,7 @@ include_once("init.php");
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Point of sale - Stock</title>
+        <title>POSNIC - Stock</title>
 
         <!-- Stylesheets -->
         <!---->
@@ -367,7 +367,7 @@ include_once("init.php");
                                                        class="table-actions-button ic-table-edit">
                                                     </a>
                                                     <a onclick="return confirmSubmit()"
-                                                       href="delete.php?id=<?php echo $row['id']; ?>&table=stock_details&return=view_product.php"
+                                                       href="delete.php?id=<?php echo $row['id']; ?>&table=stock_details&return=view_supplier.php"
                                                        class="table-actions-button ic-table-delete"></a>
                                                 </td>
                                                 <td><input type="checkbox" value="<?php echo $row['id']; ?>" name="checklist[]"
@@ -396,6 +396,9 @@ include_once("init.php");
                         </div>
                     </div>
                     <div id="footer">
+                        <p>
+                        </p>
+
                     </div>
                     <!-- end footer -->
 

@@ -1,7 +1,4 @@
-<?php
-ob_start();
-session_start();
-
+<?php session_start();
 if (isset($_POST['host']) and isset($_POST['username']) and $_POST['host'] != "" and $_POST['username'] != "") {
     $host = trim($_POST['host']);
     $user = trim($_POST['username']);
@@ -17,6 +14,13 @@ if (isset($_POST['host']) and isset($_POST['username']) and $_POST['host'] != ""
     $_SESSION['user'] = $user;
     $_SESSION['pass'] = $pass;
     $_SESSION['db_name'] = $name;
+    $link = mysqli_connect("$host", "$user", "$pass");
+    if (!$link) {
+        $data = "Database Configration is Not vaild";
+        header("location: install_step1.php?msg=$data");
+        exit;
+    }
+
     $con = mysqli_connect("$host", "$user", "$pass");
 // Check connection
     if (isset($_POST['name'])) {
@@ -27,53 +31,47 @@ if (isset($_POST['host']) and isset($_POST['username']) and $_POST['host'] != ""
             exit;
         }
     }
-    mysqli_close($con);
+
     $con = mysqli_connect("$host", "$user", "$pass", "$name");
     if (mysqli_connect_errno()) {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
     }
 
-    if (isset($_POST['dummy'])) {
+    if(isset($_POST['dummy'])) {
         $sql = file_get_contents('install_db/structure_with_demo.sql');
-    } else {
+    }else {
         $sql = file_get_contents('install_db/structure_only.sql');
     }
 
     /* execute multi query */
     if (mysqli_multi_query($con, $sql)) {
-//        var_dump($sql);
         do {
-            try {
-//                var_dump($host,$user,$pass);
-                /* store first result set */
-                if ($result = mysqli_store_result($con)) {
-
-                    while ($row = mysqli_fetch_row($result)) {
-                        printf("%s\n", $row[0]);
-                    }
-                    mysqli_free_result($result);
-                } else {
-//                    echo "issue with query";
+            /* store first result set */
+            if ($result = mysqli_store_result($con)) {
+                while ($row = mysqli_fetch_row($result)) {
+                    printf("%s\n", $row[0]);
                 }
-                /* print divider */
-                if (mysqli_more_results($con)) {
-                    printf("-----------------\n");
-                }
-            } catch (Exception $e) {
-                echo 'Caught exception: ', $e->getMessage(), "\n";
+                mysqli_free_result($result);
+            } else {    
+                echo "issue with query";
+            }
+            /* print divider */
+            if (mysqli_more_results($con)) {
+                printf("-----------------\n");
             }
         } while (mysqli_next_result($con));
     } else {
         die('Problem in query execution.');
     }
 
-    mysqli_close($con);
+
     $ourFileName = "config.php";
     $ourFileHandle = fopen($ourFileName, 'w') or die("Not able to write config file (check directory permissions). You can directly Create config.php file as like config.php.sample file. ");
     $data = '<?php $config["database"] = "' . $name . '"; $config["host"]= "' . $host . '";$config["username"]= "' . $user . '"; $config["password"]= "' . $pass . '";?>';
     fwrite($ourFileHandle, $data);
     fclose($ourFileHandle);
     header("location: install_step3.php");
+
 
 } else {
     header("location: install_step1.php");
